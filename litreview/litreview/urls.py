@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from authentication.views import LoginPage, SignupPage, logout_user
+from review.views import feed
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # authentication App :
+    path('', LoginPage.as_view(), name='login'),
+    path('signup/', SignupPage.as_view(), name='signup'),
+    path('logout/', logout_user, name='logout'),
+    # review App :
+    path('feed/', feed, name='feed'),
 ]

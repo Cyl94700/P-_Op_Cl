@@ -1,0 +1,76 @@
+html {
+  background-color: rgb(46,138, 138);
+}
+
+.form {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 5px 30px 10px 30px;
+  border-radius: 3px;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form textarea {
+  font-family: "typewriter_condensedregular";
+  color: #000;
+}
+.form input, .form label {
+  display: block;
+  font-family: "typewriter_condensedregular";
+  color: #000;
+}
+.form input {
+  width: 100%;
+  height: 35px;
+}
+
+.btn {
+  display: block;
+  font-family: "typewriter_condensedregular";
+  color: #000;
+  font-size: medium;
+  font-weight: bold;
+  height: 45px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: solid 1px #000;
+  border-radius: 2px;
+  transition: all 0.3s;
+  margin: 2px 2px 2px 2px;
+}
+.btn:hover {
+  cursor: pointer;
+  color: #c49b38;
+}
+*/
+.logo {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .header__right {
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+header .header__center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+header .header__left {
+  width: 25%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  justify-content: space-between;
+}

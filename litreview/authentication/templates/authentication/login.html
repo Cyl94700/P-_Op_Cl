@@ -2,12 +2,15 @@
 {% block content %}
     <div class="form form__login">
         <h2>Connexion</h2>
+        <br>
         <form method="post">
             {{ form.as_p }}
             {% csrf_token %}
+            <br>
             <input class="btn" type="submit" value="Se connecter">
             <p>{{ message }}</p>
             <p>Pas encore de compte ? <a href="{% url 'signup' %}">S'inscrire</a></p>
+            <br>
         </form>
     </div>
 {% endblock content %}

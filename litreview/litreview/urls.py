@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from authentication.views import LoginPage, SignupPage, logout_user
-from review.views import feed
+from django.conf import settings
+from django.conf.urls.static import static
+from authentication.views import LoginPage, SignupPage, logout_user, profile
+from review.views import feed, create_ticket, create_review, create_ticket_and_review
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +26,13 @@ urlpatterns = [
     path('', LoginPage.as_view(), name='login'),
     path('signup/', SignupPage.as_view(), name='signup'),
     path('logout/', logout_user, name='logout'),
+    path('profile/', profile, name="profile"),
     # review App :
     path('feed/', feed, name='feed'),
+    path('create-ticket/', create_ticket, name='create_ticket'),
+    path('create-review/<int:ticket_id>/', create_review, name='create_review'),
+    path('create-review/', create_ticket_and_review, name='create_ticket_and_review'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

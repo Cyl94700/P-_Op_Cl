@@ -3,8 +3,20 @@
 
 {% block content %}
 
+<div class="main">
 
-        <p>Bienvenue, <b>{{ request.user }}</b> !</p>
+
+        <div class="container">
+
+            <a href="{% url 'create_ticket' %}">
+                <button class="btn">Créer un ticket</button>
+            </a>
+            <a href="{% url 'create_ticket_and_review' %}">
+                <button class="btn">Publier une critique</button>
+            </a>
+        </div>
+</div>
+
 
 
 

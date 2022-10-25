@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+ <div class="form form__profile">
+     <h2>Profil</h2>
+     <br>
+   <form method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
+       {{ user_form.as_p}}
+       <br>
+       {{ photo_form.as_p}}
+     <br>
+     <input class="btn" type="submit" value="Modifier">
+     <input class="btn" formaction="{% url 'feed' %}" type="submit" value="Annuler" >
+   </form>
+ </div>
+
+{% endblock content %}

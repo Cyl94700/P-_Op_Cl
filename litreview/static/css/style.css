@@ -155,3 +155,60 @@ text-shadow:2px 3px 3px black;
   text-align: center;
   background: linear-gradient(#C0C0C0, #FFFFF0);
 }
+.container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.container__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
+
+}
+.container__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: medium;
+  font-weight: bold;
+  height: 45px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: solid 1px #000;
+  /*border-radius: 2px;*/
+  transition: all 0.3s;
+  margin: 2px 2px 2px 2px;
+  border-radius: 5px;
+  margin: 5%
+
+}
+
+.container__feed {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 5px 30px 10px 30px;
+  border-radius: 3px;
+  border: 1px solid #000;
+}
+.container__feed h2, .container__feed h3 {
+  text-align: center;
+}
+.container__feed .photo {
+  max-width: 130px;
+  border: solid 2px #c49b38;
+}
+.container__feed .description {
+  padding-left: 10px;
+}
+.container__feed .photo-description, .container__feed .user-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 60%;
+}

@@ -1,23 +1,70 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load feed_extras %}
 {% block content %}
 
-<div class="main">
+  <div class="main">
 
 
-        <div class="container">
+      <div class="container">
+          <a href="{% url 'create_ticket' %}">
+              <button class="container__btn">Créer un ticket</button>
+          </a>
+          <a href="{% url 'create_ticket_and_review' %}">
+                <button class="container__btn">Publier une critique</button>
+          </a>
+      </div>
+         {% if Ticket or Review  %}
+              <h2>Mon flux</h2>
+         {% else %}
+              <br>
+              <h3>Vous n'avez pas encore de fil littéraire.</h3>
+              <h3>Veuillez créer un ticket (demande de critique) ou publier une critique.</h3>
+              <h3>Vous pouvez aussi gérer vos abonnements.</h3>
+              <br>
+              <h2>Echangez avec nos membres et bonnes lectures !</h2>
 
-            <a href="{% url 'create_ticket' %}">
-                <button class="btn">Créer un ticket</button>
-            </a>
-            <a href="{% url 'create_ticket_and_review' %}">
-                <button class="btn">Publier une critique</button>
-            </a>
-        </div>
-</div>
+
+         {% endif %}
+             {% for instance in page_obj %}
+
+                {% if instance|model_type == 'Ticket' %}
+
+                    <div class="container__feed ticket {% if instance.has_review %}reviewed{% endif %}">
+                        <div class="user-date">
+                            <div class="user-infos">
+                                {% include 'review/partials/user_infos_snippet.html' with user=instance.user %}
+                                <p><a href="{% url 'profile' %}"><strong>{{ instance.user.username }}</strong></a> a demandé une critique</p>
+                            </div>
+                            <p>{{ instance.time_created }}</p>
+                        </div>
+                        {% include 'review/partials/ticket_snippet.html' with ticket=instance %}
+                        <div class="container__buttons">
+                        {% if instance.user == request.user %}
+                            <a href="{% url 'edit_ticket' instance.id %}">Éditer / supprimer la demande</a>
+                        {% endif %}
+                        {% if instance.has_review == False %}
+                            <a href="{% url 'create_review' instance.id %}">
+                                <button class="btn">Poster une critique</button>
+                            </a>
+                        {% endif %}
+                        </div>
+                    </div>
 
 
+                {% elif instance|model_type == 'Review' %}
+
+                    <div class="container__feed review">
+                        {% include 'feed/partials/review_snippet.html' with review=instance %}
+                        {% if instance.user == request.user %}
+                            <a href="{% url 'edit_review' instance.id %}">Éditer / supprimer la critique</a>
+                        {% endif %}
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
+  </div>
 
 
 

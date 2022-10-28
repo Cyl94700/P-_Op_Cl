@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load feed_extras %}
+{% block content %}
+
+  <div class="main">
+
+
+       {% if Reviews %}
+              <h2>Mes critiques</h2>
+       {% else %}
+              <br>
+              <h3>Vous n'avez pas encore de critiques.</h3>
+       {% endif %}
+
+             {% for instance in page_obj %}
+
+                 {% if instance|model_type == 'Review' %}
+
+                     <div class="container__feed review">
+                        {% include 'review/partials/review_snippet.html' with review=instance %}
+                        {% if instance.user == request.user %}
+                            <a href="{% url 'edit_review' instance.id %}">Éditer / supprimer la critique</a>
+                        {% endif %}
+                    </div>
+                 {% endif %}
+
+            {% endfor %}
+  </div>
+
+
+
+{% endblock content %}

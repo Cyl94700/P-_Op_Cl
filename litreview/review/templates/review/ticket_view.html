@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load feed_extras %}
+{% block content %}
+
+  <div class="main">
+
+
+       {% if  tickets %}
+              <h2>Mes tickets</h2>
+       {% else %}
+              <br>
+              <h3>Vous n'avez pas encore de tickets.</h3>
+       {% endif %}
+
+             {% for instance in page_obj %}
+
+                 {% if instance|model_type == 'Ticket' %}
+
+                     <div class="container__feed ticket {% if instance.has_review %}reviewed{% endif %}">
+                        <div class="user-date">
+                            <div class="user-infos">
+                                {% include 'review/partials/user_infos_snippet.html' with user=instance.user %}
+                                <p><a href="{% url 'profile' %}"><strong>{{ instance.user.username }}</strong></a> a demandé une critique</p>
+                            </div>
+                            <p>{{ instance.time_created }}</p>
+                        </div>
+                        {% include 'review/partials/ticket_snippet.html' with ticket=instance %}
+                        <div class="container__buttons">
+                        {% if instance.user == request.user %}
+                            <a href="{% url 'edit_ticket' instance.id %}">Éditer / supprimer la demande</a>
+                        {% endif %}
+                        {% if instance.has_review == False %}
+                            <a href="{% url 'create_review' instance.id %}">
+                                <button class="btn">Poster une critique</button>
+                            </a>
+                        {% endif %}
+                        </div>
+                     </div>
+                 {% endif %}
+
+            {% endfor %}
+  </div>
+
+
+
+{% endblock content %}

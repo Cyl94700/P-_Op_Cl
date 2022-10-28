@@ -2,8 +2,8 @@
 
 <div class="user-date">
     <div class="user-infos">
-        {% include 'feed/partials/user_infos_snippet.html' with user=review.user %}
-        <p><a href="{% url 'user_profile' review.user.username %}"><strong>{{ review.user.username }}</strong></a> a publié une critique</p>
+        {% include 'review/partials/user_infos_snippet.html' with user=review.user %}
+        <p><a href="{% url 'profile' %}"><strong>{{ review.user.username }}</strong></a> a publié une critique</p>
     </div>
     <p>{{ review.time_created }}</p>
 </div>
@@ -11,5 +11,5 @@
 <p>{{ review.body }}</p>
 <hr>
 <div class="container__ticket">
-    {% include 'feed/partials/ticket_snippet.html' with ticket=review.ticket %}
+    {% include 'review/partials/ticket_snippet.html' with ticket=review.ticket %}
 </div>

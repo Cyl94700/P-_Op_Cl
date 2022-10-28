@@ -18,7 +18,8 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from authentication.views import LoginPage, SignupPage, logout_user, profile
-from review.views import feed, create_ticket, create_review, create_ticket_and_review, edit_ticket, edit_review
+from review.views import feed, create_ticket, create_review, create_ticket_and_review, edit_ticket, edit_review, \
+                         ticket_view, review_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,8 +30,10 @@ urlpatterns = [
     path('profile/', profile, name="profile"),
     # review App :
     path('feed/', feed, name='feed'),
+    path('ticket_view/', ticket_view, name='ticket_view'),
     path('create-ticket/', create_ticket, name='create_ticket'),
     path('edit-ticket/<int:ticket_id>/', edit_ticket, name='edit_ticket'),
+    path('review_view/', review_view, name='review_view'),
     path('create-review/<int:ticket_id>/', create_review, name='create_review'),
     path('edit-review/<int:review_id>/', edit_review, name='edit_review'),
     path('create-review/', create_ticket_and_review, name='create_ticket_and_review'),

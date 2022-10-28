@@ -2,7 +2,6 @@ from itertools import chain
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-
 from . import forms, models
 
 
@@ -25,7 +24,9 @@ def feed(request):
     page_obj = paginator.get_page(page)
 
     context = {
-        'page_obj': page_obj
+        'page_obj': page_obj,
+        'tickets': tickets,
+        'reviews': reviews
     }
 
     return render(
@@ -76,7 +77,7 @@ def create_review(request, ticket_id):
     }
     return render(
         request,
-        'feed/create_review.html',
+        'review/create_review.html',
         context
     )
 
@@ -107,7 +108,7 @@ def create_ticket_and_review(request):
     }
     return render(
         request,
-        'feed/create_review.html',
+        'review/create_review.html',
         context
     )
 
@@ -134,7 +135,7 @@ def edit_ticket(request, ticket_id):
     }
     return render(
         request,
-        'feed/edit_ticket.html',
+        'review/edit_ticket.html',
         context
     )
 
@@ -161,6 +162,48 @@ def edit_review(request, review_id):
     }
     return render(
         request,
-        'feed/edit_review.html',
+        'review/edit_review.html',
         context
     )
+
+
+@login_required
+def ticket_view(request):
+    tickets = models.Ticket.objects.filter(
+        user__in=request.user.follows.all()
+    )
+
+    paginator = Paginator(tickets, 6)
+    page = request.GET.get('page')
+    page_obj = paginator.get_page(page)
+
+    context = {
+        'page_obj': page_obj
+    }
+
+    return render(
+        request,
+        'review/ticket_view.html',
+        context
+     )
+
+
+@login_required
+def review_view(request):
+    reviews = models.Review.objects.filter(
+        user__in=request.user.follows.all()
+    )
+
+    paginator = Paginator(reviews, 6)
+    page = request.GET.get('page')
+    page_obj = paginator.get_page(page)
+
+    context = {
+        'page_obj': page_obj
+    }
+
+    return render(
+        request,
+        'review/review_view.html',
+        context
+     )

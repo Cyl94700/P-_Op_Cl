@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load feed_extras %}
+
 {% block content %}
 
   <div class="main">
@@ -14,7 +15,7 @@
                 <button class="container__btn">Publier une critique</button>
           </a>
       </div>
-         {% if Ticket or Review  %}
+         {% if tickets or reviews  %}
               <h2>Mon flux</h2>
          {% else %}
               <br>
@@ -23,8 +24,6 @@
               <h3>Vous pouvez aussi gérer vos abonnements.</h3>
               <br>
               <h2>Echangez avec nos membres et bonnes lectures !</h2>
-
-
          {% endif %}
              {% for instance in page_obj %}
 
@@ -55,7 +54,7 @@
                 {% elif instance|model_type == 'Review' %}
 
                     <div class="container__feed review">
-                        {% include 'feed/partials/review_snippet.html' with review=instance %}
+                        {% include 'review/partials/review_snippet.html' with review=instance %}
                         {% if instance.user == request.user %}
                             <a href="{% url 'edit_review' instance.id %}">Éditer / supprimer la critique</a>
                         {% endif %}

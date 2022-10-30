@@ -11,7 +11,7 @@ html {
   text-decoration: none;
 }
 .profile-pic {
-  max-width: 180px;
+  max-width: 120px;
   clip-path: circle();
   display: block;
   margin: auto;

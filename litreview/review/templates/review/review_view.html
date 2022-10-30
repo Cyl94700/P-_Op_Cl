@@ -20,7 +20,7 @@
                      <div class="container__feed review">
                         {% include 'review/partials/review_snippet.html' with review=instance %}
                         {% if instance.user == request.user %}
-                            <a href="{% url 'edit_review' instance.id %}">Éditer / supprimer la critique</a>
+                            <a href="{% url 'edit_review' instance.id %}">Modifier / supprimer la critique</a>
                         {% endif %}
                     </div>
                  {% endif %}

@@ -2,10 +2,11 @@
 
 {% block content %}
     <div class="form form__review">
-        <h2>Publier une critique</h2>
+        <h2>Critique</h2>
+        <h2>Publier une critique :</h2>
         {% if both %}
             <form method="post" enctype="multipart/form-data">
-                <h4>A propos de ce livre:</h4>
+                <h4>Ticket => A propos de ce livre:</h4>
                 {{ ticket_form.as_p }}
                 <h4>Ma critique:</h4>
                 {{ review_form.as_p }}
@@ -19,5 +20,8 @@
                 <input class="btn" type="submit" value="Soumettre">
             </form>
         {% endif %}
+                <button class="butn">
+                <a id="return" href="{% url 'feed' %}">Annuler</a>
+                </button>
     </div>
 {% endblock content %}

@@ -3,9 +3,14 @@
     <div class="form form__signup">
         <h2>Inscription</h2>
         <form method="post">
+
             {{ form.as_p }}
             {% csrf_token %}
             <input class="btn" type="submit" value="S'inscrire">
         </form>
+
+        <button class="butn">
+           <a id="return" href="{% url 'login' %}">Annuler</a>
+        </button>
     </div>
 {% endblock content %}

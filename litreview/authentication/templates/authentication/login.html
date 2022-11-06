@@ -8,7 +8,7 @@
             {% csrf_token %}
             <br>
             <input class="btn" type="submit" value="Se connecter">
-            <p>{{ message }}</p>
+            <br>
             <p>Pas encore de compte ? <a href="{% url 'signup' %}">S'inscrire</a></p>
             <br>
         </form>

@@ -1,12 +1,10 @@
 html {
-  /*background-color: rgb(46,138, 138);*/
-  /*background: linear-gradient(#C0C0C0, #FFFFF0);*/
   background-color: #C0C0C0;
 }
 * {
   margin: 0;
   padding: 0;
-  font-family: Montserrat, Sans-serif;
+  font-family: "Montserrat, Sans-serif";
   list-style: none;
   text-decoration: none;
 }
@@ -26,7 +24,10 @@ html {
 .form {
   background-color: rgba(255, 255, 255, 0.5);
   min-height: 500px;
-  padding: 60px 30px 10px 30px;
+  width: 90%;
+  margin-left: 3%;
+  text-align: center;
+  padding: 20px 20px 20px 20px;
   border-radius: 3px;
   border: 1px solid #000;
   display: flex;
@@ -35,47 +36,96 @@ html {
   line-height: 2em;
 }
 .form textarea {
-  font-family: "typewriter_condensedregular";
+  width: 450px;
+  font-family: "Montserrat, Sans-serif";
   color: #000;
 }
 .form input, .form label {
   display: block;
-  font-family: "typewriter_condensedregular";
+  font-family: "Montserrat, Sans-serif";
   color: #000;
 }
 .form input {
-  width: 100%;
+  width: 450px;
   height: 30px;
 }
+/*
+label {
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  text-indent: -15px;
+}*/
 
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  display: bloc;
+  margin-left: 216px;
+}
+
+
+/*
+input[type="ckeckbox"].image-clear_id + label {
+  border: 1px solid #000;
+}
+*/
 .btn {
   display: block;
-  font-family: "typewriter_condensedregular";
+  font-family: "Montserrat, Sans-serif";
+  width: 450px;
   color: #000;
   font-size: medium;
   font-weight: bold;
-  height: 45px;
+  height: 30px;
   background-color: rgba(255, 255, 255, 0.5);
   border: solid 1px #000;
-  border-radius: 2px;
+  border-radius: 5px;
+  transition: all 0.3s;
+  margin: 2px 2px 2px 2px;
+}
+.butn {
+  font-family: "Montserrat, Sans-serif";
+  margin-left: 360px;
+  color: #000;
+  font-size: medium;
+  font-weight: bold;
+  width: 450px;
+  height: 30px;
+  position: relative;
+  padding-right:10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: solid 1px #000;
+  border-radius: 5px;
   transition: all 0.3s;
   margin: 2px 2px 2px 2px;
 }
 
-
 .btn:hover {
   cursor: pointer;
-  color: #c49b38;
+  background: linear-gradient(#C0C0C0, #FFFFF0);
+  color: #2169ec
+  /*color: #c49b38;*/
 }
-
+.butn:hover {
+  cursor: pointer;
+  background: linear-gradient(#C0C0C0, #FFFFF0);
+  /*color: #c49b38;*/
+}
+.butn a {
+  display: block;
+  color: #000;
+}
+.butn a:hover {
+  cursor: pointer;
+  color: #2169ec;
+  /*color: #c49b38;*/
+}
 .logo {
-  /*display: flex;*/
   position: sticky;
   right: 46%;
   width: 150px;
   height: 150px;
-  /*margin: auto;*/
-
 }
 
 header {
@@ -84,23 +134,12 @@ header {
   display: flex;
   padding-left: 9%;
   padding-right:2%;
-  /*justify-content: space-between;*/
-  /*align-items: center;*/
-  /*text-align: center;*/
-  /*background-color:rgb(46,138, 138)*/
   background: linear-gradient(#C0C0C0, #FFFFF0);
-  /*background: linear-gradient(#D3D3D3, #FFFFF0);*/
-  /*background: linear-gradient(#2E2E8A, #D3D3D3);*/
-  /*background: linear-gradient(#2E2E8A, cyan);*/
-  /*background: linear-gradient(#2E2E8A, #CEFCEC);*/
-  /*background-color: #afafaf;*/
-  /*background-color: #3a3a3a;*/
 }
 header > a,
 header > p,
 header button{
   color: black;
-  /*margin: 60px 80px;*/
   margin:auto;
   font-size: 1.4em;
 
@@ -122,18 +161,17 @@ header .dropdown:hover .content{
   display: flex;
   flex-direction: column;
   position: absolute;
-  /*background-color: #afafaf;*/
   background-color: #DCDCDC;
   top: 84px;
   width: 100%;
   opacity: 0.80;
-  /*padding: 5px 10px;*/
   box-sizing: border-box;
   border: 1px solid black;
   border-radius: 10px;
   line-height: 2;
   text-align: center;
 }
+
 li a{
   color: black;
 }
@@ -141,7 +179,6 @@ li a:hover{
 color: #2169ec;
 }
 li:hover{
-/*background-color: #D5D3D3;*/
 background-color: #C0C0C0;
 border-radius: 5px;
 }
@@ -164,7 +201,22 @@ text-shadow:2px 3px 3px black;
   align-items: center;
   justify-content: space-between;
   border-radius: 20px;
-
+}
+.container__buttons >a{
+  font-weight: bold;
+  color: #c49b38;
+}
+.container__buttons >a:hover{
+  cursor: pointer;
+  color: #2169ec;
+}
+.container__feed  >a{
+  font-weight: bold;
+  color: #c49b38;
+}
+.container__feed  >a:hover{
+  cursor: pointer;
+  color: #2169ec;
 }
 .container__btn {
   display: flex;
@@ -175,16 +227,19 @@ text-shadow:2px 3px 3px black;
   height: 45px;
   background-color: rgba(255, 255, 255, 0.5);
   border: solid 1px #000;
-  /*border-radius: 2px;*/
   transition: all 0.3s;
-  margin: 2px 2px 2px 2px;
+  margin: 10px 10px 5px 10px;
   border-radius: 5px;
-  margin: 5%
-
+  padding-left: 15%;
+  padding-right: 15%;
+  cursor: pointer;
 }
-
+.container__btn:hover{
+  background: linear-gradient(#C0C0C0, #FFFFF0);
+  color: #2169ec
+}
 .container__feed {
-  width: 100%;
+  width: 80%;
   margin-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.5);
   padding: 5px 30px 10px 30px;
@@ -195,16 +250,30 @@ text-shadow:2px 3px 3px black;
   text-align: center;
 }
 .container__feed .photo {
-  max-width: 130px;
-  border: solid 2px #c49b38;
+    height: 180px;
+    width: 140px;
+    margin-right: 16px;
+    border: solid 2px #c49b38;
 }
 .container__feed .description {
-  padding-left: 10px;
+  width: 600px;
+  margin-right: 400px;
 }
 .container__feed .photo-description, .container__feed .user-date {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+#stars > span{
+  display: inline-block;
+  font-size: 25px;
+  color: #c49b38;
+}
+.user-infos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .main {
   display: flex;
@@ -212,3 +281,31 @@ text-shadow:2px 3px 3px black;
   align-items: center;
   flex: 0 0 60%;
 }
+ul.messages {
+    padding:0;
+    list-style-type:
+    none;
+}
+
+ul.messages li.success,
+ul.messages li.error, {
+    margin:0;
+    list-style:none;
+    color:#fff;
+}
+ul.messages li.success {
+    background-color:#D4F6D7;
+    color: green;
+    text-align: center;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+ }
+ul.messages li.error {
+    background-color:#FDDADA;
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    }

@@ -2,10 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View
-from django.conf import settings
 from django.contrib import messages
-from review.models import Ticket, Review
-from authentication.models import User
+from .models import User
 
 
 from . import forms
@@ -17,10 +15,8 @@ class LoginPage(View):
 
     def get(self, request):
         form = self.form_class
-        message = ''
         context = {
             'form': form,
-            'message': message
         }
         return render(
             request,
@@ -38,11 +34,9 @@ class LoginPage(View):
             if user is not None:
                 login(request, user)
                 return redirect('feed')
-
-        message = 'Identifiants invalides.'
+        messages.error(request, f'Identifiant et/ou mot de passe invalide(s)!')
         context = {
             'form': form,
-            'message': message
         }
         return render(
             request,
@@ -69,9 +63,10 @@ class SignupPage(View):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect(settings.LOGIN_REDIRECT_URL)
+            form.save()
+            # login(request, user)
+            messages.success(request, f'Votre compte a bien été créé! Vous pouvez vous connecter.')
+            return redirect('login')
         context = {
             'form': form
         }
@@ -84,7 +79,8 @@ class SignupPage(View):
 
 @login_required
 def profile(request, user):
-    user = User.objects.get(username=user)
+    # user = User.objects.get(username=user)
+
     if request.method == 'POST':
         user_form = forms.UserUpdateForm(request.POST, instance=request.user)
         photo_form = forms.PhotoUpdateForm(request.POST, request.FILES, instance=request.user)
@@ -92,8 +88,9 @@ def profile(request, user):
         if user_form.is_valid() and photo_form.is_valid():
             user_form.save()
             photo_form.save()
-            messages.success(request, f'Votre profil a été modifié!')
-            return redirect('profile')
+            messages.success(request, f'Votre profil a bien été modifié!')
+
+            return redirect('profile', user)
 
     else:
         user_form = forms.UserUpdateForm(instance=request.user)
@@ -102,7 +99,6 @@ def profile(request, user):
     context = {
         'user_form': user_form,
         'photo_form': photo_form,
-        'requested_user': user,
         'title': 'Profil'
     }
 
@@ -111,6 +107,7 @@ def profile(request, user):
 
 def logout_user(request):
     logout(request)
+    messages.success(request, f'Vous êtes bien déconnecté')
     return redirect('login')
 
 

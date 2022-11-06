@@ -28,7 +28,7 @@ urlpatterns = [
     path('signup/', SignupPage.as_view(), name='signup'),
     path('logout/', logout_user, name='logout'),
     path('profile/<str:user>/', profile, name="profile"),
-    path('profile/<str:user>/followers', followers_page, name="followers_page"),
+    path('profile/<str:user>/followers/', followers_page, name="followers_page"),
     # review App :
     path('feed/', feed, name='feed'),
     path('ticket_view/', ticket_view, name='ticket_view'),

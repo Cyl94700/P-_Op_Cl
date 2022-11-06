@@ -5,7 +5,7 @@
         <form method="post">
             {{ edit_form.as_p }}
             {% csrf_token %}
-            <button class="btn" type="submit" >Sauvegarder</button>
+            <button class="btn" type="submit" >Modifier</button>
         </form>
         <hr>
         <h3>Supprimer le ticket ?</h3>
@@ -14,5 +14,10 @@
             {% csrf_token %}
             <button class="btn" type="submit" >Supprimer</button>
         </form>
+           <br>
+        <button class="butn">
+                <a id="return" href="{% url 'feed' %}">Annuler</a>
+                </button>
+
     </div>
 {% endblock content %}

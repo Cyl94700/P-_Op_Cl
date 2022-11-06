@@ -7,7 +7,12 @@
     </div>
     <p>{{ review.time_created }}</p>
 </div>
-<h3>{{ review.headline }} - {% for i in 0|range:review.rating %}<i class="fas fa-star"></i>{% endfor %}</h3>
+<h3>{{ review.headline }} - {% for i in 0|range:review.rating %}
+                                <i id="stars">
+                                    <span> &#9733 </span>
+                                </i>
+                            {% endfor %}
+</h3>
 <p>{{ review.body }}</p>
 <hr>
 <div class="container__ticket">

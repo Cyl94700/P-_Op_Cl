@@ -46,10 +46,20 @@
        {% endif %}
      </header>
 
-     <div class="container">
-        {% block content %}
-        {% endblock content %}
-     </div>
+        <div class="container_message">
+            {% if messages %}
+                <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">
+                {{ message }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            <!-- Block Content -->
+            {% block content %}{% endblock %}
+        </div>
+
      {% if user.is_authenticated == False %}
        <footer class="copy-r">
             <div class="container"><p class="copy22">Copyright &copy; LITReview 2022</p></div>

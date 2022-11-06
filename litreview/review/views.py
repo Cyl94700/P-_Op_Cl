@@ -2,6 +2,9 @@ from itertools import chain
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import Review, Ticket
+from .forms import TicketForm, TicketFormDelete, ReviewForm, ReviewFormDelete
 from . import forms, models
 
 
@@ -47,6 +50,7 @@ def create_ticket(request):
             if form.cleaned_data['image']:
                 ticket.image = form.cleaned_data['image']
             ticket.save()
+            messages.success(request, f'Votre ticket a bien été créée!')
             return redirect('feed')
     context = {
         'form': form
@@ -70,6 +74,7 @@ def create_review(request, ticket_id):
             review.ticket.has_review = True
             review.ticket.save()
             review.save()
+            messages.success(request, f'Votre critique a bien été créée!')
             return redirect('feed')
     context = {
         'both': False,
@@ -100,6 +105,7 @@ def create_ticket_and_review(request):
             review.user = request.user
             review.ticket = get_object_or_404(models.Ticket, id=ticket.id)
             review.save()
+            messages.success(request, f'Votre publication a bien été créée!')
             return redirect('feed')
     context = {
         'both': True,
@@ -120,17 +126,22 @@ def edit_ticket(request, ticket_id):
     delete_form = forms.TicketFormDelete()
     if request.method == 'POST':
         if 'edit_ticket' in request.POST:
-            edit_form = forms.TicketForm(request.POST, instance=ticket)
+            edit_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
             if edit_form.is_valid():
+                # ticket = edit_form.save()
+                # ticket.save()
                 edit_form.save()
+                messages.success(request, f'Votre ticket a bien été modifié!')
                 return redirect('feed')
         if 'delete_ticket' in request.POST:
             delete_form = forms.TicketFormDelete(request.POST)
             if delete_form.is_valid():
                 ticket.delete()
+                messages.success(request, f'Votre ticket a bien été supprimé!')
                 return redirect('feed')
     context = {
         'edit_form': edit_form,
+        'ticket': ticket,
         'delete_form': delete_form
     }
     return render(
@@ -150,11 +161,13 @@ def edit_review(request, review_id):
             edit_form = forms.ReviewForm(request.POST, instance=review)
             if edit_form.is_valid():
                 edit_form.save()
+                messages.success(request, f'Votre critique a bien été modifié!')
                 return redirect('feed')
         if 'delete_review' in request.POST:
             delete_form = forms.ReviewFormDelete(request.POST)
             if delete_form.is_valid():
                 review.delete()
+                messages.success(request, f'Votre critique a bien été supprimée!')
                 return redirect('feed')
     context = {
         'edit_form': edit_form,
@@ -178,7 +191,8 @@ def ticket_view(request):
     page_obj = paginator.get_page(page)
 
     context = {
-        'page_obj': page_obj
+        'page_obj': page_obj,
+        'tickets': tickets
     }
 
     return render(
@@ -199,7 +213,8 @@ def review_view(request):
     page_obj = paginator.get_page(page)
 
     context = {
-        'page_obj': page_obj
+        'page_obj': page_obj,
+        'reviews': reviews
     }
 
     return render(

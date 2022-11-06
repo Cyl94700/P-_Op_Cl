@@ -2,11 +2,15 @@
 
 {% block content %}
     <div class="form form__ticket">
+        <h2>Ticket</h2>
         <h2>Demander une critique:</h2>
         <form method="post" enctype="multipart/form-data">
             {{ form.as_p }}
             {% csrf_token %}
             <input class="btn" type="submit" value="Soumettre">
         </form>
+        <button class="butn">
+           <a id="return" href="{% url 'feed' %}">Annuler</a>
+        </button>
     </div>
 {% endblock content %}

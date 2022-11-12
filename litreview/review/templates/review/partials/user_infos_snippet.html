@@ -1,10 +1,9 @@
 {% load static %}
 
 
-    <a href="{% url 'profile' user.username %}">
         {% if user.profile_photo %}
             <img class="profile-pic-small" src="{{ user.profile_photo.url }}">
         {% else %}
             <img class="profile-pic-small" src="{% static 'img/default_profile.png' %}">
         {% endif %}
-    </a>
+

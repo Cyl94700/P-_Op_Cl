@@ -6,16 +6,19 @@ from django.contrib import messages
 from .models import Review, Ticket
 from .forms import TicketForm, TicketFormDelete, ReviewForm, ReviewFormDelete
 from . import forms, models
+from django.db.models import Q
 
 
 @login_required
 def feed(request):
     tickets = models.Ticket.objects.filter(
-        user__in=request.user.follows.all()
-    )
+       Q(user__in=request.user.follows.all()) |
+       Q(user__exact=request.user.id))
+
     reviews = models.Review.objects.filter(
-        user__in=request.user.follows.all()
-    )
+       Q(user__in=request.user.follows.all()) |
+       Q(user__exact=request.user.id))
+
     tickets_and_reviews = sorted(
         chain(tickets, reviews),
         key=lambda instance: instance.time_created,
@@ -47,8 +50,8 @@ def create_ticket(request):
         if form.is_valid():
             ticket = form.save(commit=False)
             ticket.user = request.user
-            if form.cleaned_data['image']:
-                ticket.image = form.cleaned_data['image']
+            # if form.cleaned_data['image']:
+            # ticket.image = form.cleaned_data['image']
             ticket.save()
             messages.success(request, f'Votre ticket a bien été créée!')
             return redirect('feed')
@@ -97,8 +100,8 @@ def create_ticket_and_review(request):
         if all([ticket_form.is_valid(), review_form.is_valid()]):
             ticket = ticket_form.save(commit=False)
             ticket.user = request.user
-            if ticket_form.cleaned_data['image']:
-                ticket.image = ticket_form.cleaned_data['image']
+            # if ticket_form.cleaned_data['image']:
+            # ticket.image = ticket_form.cleaned_data['image']
             ticket.has_review = True
             ticket.save()
             review = review_form.save(commit=False)
@@ -128,8 +131,7 @@ def edit_ticket(request, ticket_id):
         if 'edit_ticket' in request.POST:
             edit_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
             if edit_form.is_valid():
-                # ticket = edit_form.save()
-                # ticket.save()
+                print(edit_form.fields['image'])
                 edit_form.save()
                 messages.success(request, f'Votre ticket a bien été modifié!')
                 return redirect('feed')
@@ -183,8 +185,12 @@ def edit_review(request, review_id):
 @login_required
 def ticket_view(request):
     tickets = models.Ticket.objects.filter(
-        user__in=request.user.follows.all()
-    )
+        Q(user__in=request.user.follows.all()) |
+        Q(user__exact=request.user.id))
+    tickets = sorted(
+        chain(tickets),
+        key=lambda instance: instance.time_created,
+        reverse=True)
 
     paginator = Paginator(tickets, 6)
     page = request.GET.get('page')
@@ -205,8 +211,12 @@ def ticket_view(request):
 @login_required
 def review_view(request):
     reviews = models.Review.objects.filter(
-        user__in=request.user.follows.all()
-    )
+        Q(user__in=request.user.follows.all()) |
+        Q(user__exact=request.user.id))
+    reviews = sorted(
+        chain(reviews),
+        key=lambda instance: instance.time_created,
+        reverse=True)
 
     paginator = Paginator(reviews, 6)
     page = request.GET.get('page')

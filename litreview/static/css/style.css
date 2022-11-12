@@ -15,19 +15,120 @@ html {
   margin: auto;
 }
 .profile-pic-small {
-  max-width: 50px;
+  position: relative;
+  z-index: -1;
+  max-width: 60px;
   clip-path: circle();
   display: block;
   margin: auto;
   }
+.main__sub .profile-pic {
+  position: fixed;
+  width: 100%;
+  top: 170px;
+  left: 45%;
+  max-width: 100px;
+  /*clip-path: circle();*/
+  display: block;
+  margin-top: 40px;
+  }
+.main__sub .profile-pic-small2 {
+  position: relative;
+  z-index: -1;
+  left:10%;
+  max-width: 60px;
+  clip-path: circle();
+  display: block;
 
+  }
+ .main__sub .followers {
+   top: 330px;
+   left: 41%;
+   width: 100%;
+   position: fixed;
+ }
+ .container__sub .btn2 {
+  margin-left: 40%;
+  display: block;
+  font-family: "Montserrat, Sans-serif";
+  width: 450px;
+  color: #000;
+  font-size: medium;
+  font-weight: bold;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: solid 1px #000;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.container__sub .btn2-search {
+  margin-right: 40%;
+  display: block;
+  font-family: "Montserrat, Sans-serif";
+  width: 450px;
+  color: #000;
+  font-size: medium;
+  font-weight: bold;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: solid 1px #000;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.container__sub {
+ padding-top: 380px;
+ width: 90%;
+  }
+
+.container__sub .other{
+text-align: center;
+padding-right: 76%;
+}
+.container__sub .ab{
+text-align: center;
+margin-top: 170px;
+padding-left: 6%;
+}
+
+.container__sub .search-user{
+  position: fixed;
+  width: 100%;
+  left: 600px;
+  top: 350px;
+}
+.container__sub .user-follower{
+padding-left:41%;
+padding-top: 5px;
+width:100%;
+}
+.container__sub >user-follower-search{
+padding-left:41%;
+padding-top: 10px;
+width:100%;
+}
+.user-follower-search >p{
+padding-left:10%;
+padding-top: 5px;
+width:100%;
+}
+.user-follower >p{
+padding-left:10%;
+padding-top: 5px;
+width:100%;
+}
+strong{
+color: blue;
+}
 .form {
+  position: absolute;
   background-color: rgba(255, 255, 255, 0.5);
   min-height: 500px;
-  width: 90%;
-  margin-left: 3%;
+  width: 80%;
+  margin-left: 110px;
+  margin-top: 180px;
+  margin-bottom: 10px;
   text-align: center;
-  padding: 20px 20px 20px 20px;
+  padding: 30px 20px 20px 20px;
   border-radius: 3px;
   border: 1px solid #000;
   display: flex;
@@ -41,6 +142,7 @@ html {
   color: #000;
 }
 .form input, .form label {
+  margin: auto;
   display: block;
   font-family: "Montserrat, Sans-serif";
   color: #000;
@@ -49,13 +151,6 @@ html {
   width: 450px;
   height: 30px;
 }
-/*
-label {
-  display: flex;
-  font-weight: bold;
-  align-items: center;
-  text-indent: -15px;
-}*/
 
 input[type="checkbox"] {
   width: 15px;
@@ -64,12 +159,6 @@ input[type="checkbox"] {
   margin-left: 216px;
 }
 
-
-/*
-input[type="ckeckbox"].image-clear_id + label {
-  border: 1px solid #000;
-}
-*/
 .btn {
   display: block;
   font-family: "Montserrat, Sans-serif";
@@ -105,12 +194,10 @@ input[type="ckeckbox"].image-clear_id + label {
   cursor: pointer;
   background: linear-gradient(#C0C0C0, #FFFFF0);
   color: #2169ec
-  /*color: #c49b38;*/
 }
 .butn:hover {
   cursor: pointer;
   background: linear-gradient(#C0C0C0, #FFFFF0);
-  /*color: #c49b38;*/
 }
 .butn a {
   display: block;
@@ -119,7 +206,6 @@ input[type="ckeckbox"].image-clear_id + label {
 .butn a:hover {
   cursor: pointer;
   color: #2169ec;
-  /*color: #c49b38;*/
 }
 .logo {
   position: sticky;
@@ -129,11 +215,10 @@ input[type="ckeckbox"].image-clear_id + label {
 }
 
 header {
-  width = 100%;
-  height = 120px;
+  position: fixed;
+  width: 100%;
+  height: 150px;
   display: flex;
-  padding-left: 9%;
-  padding-right:2%;
   background: linear-gradient(#C0C0C0, #FFFFF0);
 }
 header > a,
@@ -142,7 +227,6 @@ header button{
   color: black;
   margin:auto;
   font-size: 1.4em;
-
 }
 header button{
   background-color: transparent;
@@ -152,6 +236,7 @@ header button{
 }
 header .dropdown{
   position: relative;
+  /*padding-right:120px;*/
 }
 header .dropdown .content{
   display: none;
@@ -188,11 +273,21 @@ color: white;
 header p{
 text-shadow:2px 3px 3px black;
 }
-.copy-r {
-  text-align: center;
+.copy-r{
+  position: fixed;
+  width: 100%;
+  bottom: 10px;
   background: linear-gradient(#C0C0C0, #FFFFF0);
 }
+.copy22{
+  width: 300px;
+  padding-left: 42%;
+  bottom: 10px;
+}
 .container {
+  position: fixed;
+  width: 100%;
+  top: 180px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -219,7 +314,8 @@ text-shadow:2px 3px 3px black;
   color: #2169ec;
 }
 .container__btn {
-  display: flex;
+  width: 220px;
+  top: 0px;
   align-items: center;
   justify-content: space-between;
   font-size: medium;
@@ -228,7 +324,7 @@ text-shadow:2px 3px 3px black;
   background-color: rgba(255, 255, 255, 0.5);
   border: solid 1px #000;
   transition: all 0.3s;
-  margin: 10px 10px 5px 10px;
+  margin: 0px 0px 0px 0px;
   border-radius: 5px;
   padding-left: 15%;
   padding-right: 15%;
@@ -240,13 +336,20 @@ text-shadow:2px 3px 3px black;
 }
 .container__feed {
   width: 80%;
-  margin-bottom: 20px;
+  margin-top: 70px;
   background-color: rgba(255, 255, 255, 0.5);
-  padding: 5px 30px 10px 30px;
+  padding: 15px 15px 15px 15px;
   border-radius: 3px;
   border: 1px solid #000;
 }
-.container__feed h2, .container__feed h3 {
+.main__sub >h2 {
+  top: 186px;
+  right: 35px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+}
+.container__feed h3 {
   text-align: center;
 }
 .container__feed .photo {
@@ -276,15 +379,18 @@ text-shadow:2px 3px 3px black;
   justify-content: center;
 }
 .main {
+  width: 100%;
+  padding-top: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 0 0 60%;
 }
 ul.messages {
-    padding:0;
-    list-style-type:
-    none;
+    position: fixed;
+    width:100%;
+    top: 150px;
+    list-style-type: none;
 }
 
 ul.messages li.success,

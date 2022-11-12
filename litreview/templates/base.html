@@ -12,7 +12,7 @@
      <header id="navbar" class="nav">
        {%if user.is_authenticated %}
          <a href="{% url 'feed' %}">Mon fil </a>
-         <a href="{% url 'followers_page' user.username%}">Mes abonnements </a>
+         <a href="{% url 'subscriptions' user.username%}">Mes abonnements </a>
        {% endif %}
          {%if user.is_authenticated == False %}
             <p>Parlons Livres !</p>
@@ -62,7 +62,7 @@
 
      {% if user.is_authenticated == False %}
        <footer class="copy-r">
-            <div class="container"><p class="copy22">Copyright &copy; LITReview 2022</p></div>
+            <p class="copy22">Copyright &copy; LITReview 2022</p>
        </footer>
      {% endif %}
    </body>

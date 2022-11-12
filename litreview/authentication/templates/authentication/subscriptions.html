@@ -4,78 +4,75 @@
 
 {% block content %}
 
-    <div class="col-25">
-    </div>
+    <div class="main__sub">
 
-    <div class="main">
-        {%if user.username == requested_user.username %}
-            <a href="{% url 'profile' user.username %}">
+          <h2>Mes abonnements et abonnés</h2>
+           {%if user.username == requested_user.username %}
                 {% if user.profile_photo %}
                     <img class="profile-pic" src="{{ user.profile_photo.url }}">
                 {% else %}
                     <img class="profile-pic" src="{% static 'img/default_profile.png' %}">
                 {% endif %}
-            </a>
-            <p><a href="{% url 'followers_page' user.username %}"><b>{{ user_followers|length }}</b> Abonnés | <b>{{ user_follows|length }}</b> Abonnements</a></p>
-            <h2>Mes Abonnements</h2>
 
-        {% endif %}
+             <p class="followers"> <b>{{ user_follows|length }}</b> Abonnement(s) | <b>{{ user_followers|length }}</b> Abonné(s)</p>
+           {% endif %}
 
 
 
-        <div class="container__feed followers">
-            {%if request.user.username == requested_user.username %}
-                <h3>Suivre d'autres utilisateurs</h3>
-                <div class="form__search">
+        <div class="container__sub">
+            <div class="search-user">
+                {%if request.user.username == requested_user.username %}
+                  <h3 class="other">Suivre d'autres utilisateurs</h3>
+                  <br>
+                  <div class="form__search">
                      <form method="post">
                         {{ search_form.as_p }}
                          {% csrf_token %}
                         <input class="btn" type="submit" value="Rechercher">
                     </form>
-                </div>
+                  </div>
                 {% if searched_user_resp %}
                     <div class="user-follower__user">
-                        <div class="user-follower">
-                            <a href="{% url 'profile' searched_user_resp.username %}">
+                        <div class="user-follower-search">
+
                                 {% if searched_user_resp.profile_photo %}
-                                    <img class="profile-pic-small" src="{{ searched_user_resp.profile_photo.url }}">
+                                    <img class="profile-pic-small2" src="{{ searched_user_resp.profile_photo.url }}">
                                 {% else %}
-                                    <img class="profile-pic-small" src="{% static 'img/default_profile.png' %}">
+                                    <img class="profile-pic-small2" src="{% static 'img/default_profile.png' %}">
                                 {% endif %}
-                            </a>
-                            <p>
-                                <a href="{% url 'profile' searched_user_resp.username %}">
+
+                            <p class="search">
                                     <strong>{{searched_user_resp.username }}</strong>
-                                </a>
                             </p>
                         </div>
                         <div>
                             <form method="post">
                                 {{ searched_user_btn.as_p }}
                                 {% csrf_token %}
-                                <input class="btn" type="submit" value="S'abonner">
+                                <input class="btn2-search" type="submit" value="S'abonner">
                             </form>
                         </div>
                     </div>
                 {% endif %}
-            {% endif %}
+              {% endif %}
+            </div>
+            <br>
             {% if user_follows %}
-                <h3>Abonnements</h3>
+                <h3 class="ab">Abonnements({{user_follows|length}})</h3>
+                <br>
                 <hr>
-                    {% for user, form in group_user_follows.items %}
+                    {% for user, form in group_follows_users.items %}
                         <div class="user-follower__user">
                             <div class="user-follower">
-                                <a href="{% url 'profile' user.username %}">
+
                                     {% if user.profile_photo %}
-                                        <img class="profile-pic-small" src="{{ user.profile_photo.url }}">
+                                        <img class="profile-pic-small2" src="{{ user.profile_photo.url }}">
                                     {% else %}
-                                        <img class="profile-pic-small" src="{% static 'img/default_profile.png' %}">
+                                        <img class="profile-pic-small2" src="{% static 'img/default_profile.png' %}">
                                     {% endif %}
-                                </a>
+
                                 <p>
-                                    <a href="{% url 'profile' user.username %}">
                                         <strong>{{user.username }}</strong>
-                                    </a>
                                 </p>
                             </div>
 
@@ -84,7 +81,7 @@
                                 <form method="post">
                                     {{ form.as_p }}
                                     {% csrf_token %}
-                                    <input class="btn" id="follow_btn" type="submit" value="Se désabonner">
+                                    <input class="btn2" id="follow_btn" type="submit" value="Se désabonner">
                                 </form>
                             </div>
                             {% endif %}
@@ -92,23 +89,22 @@
                     <hr>
                     {% endfor %}
             {% endif %}
-
+            <br>
             {% if user_followers %}
-                <h3>Abonnés ({{user_followers|length}})</h3>
+                <h3 class="ab">Abonnés ({{user_followers|length}})</h3>
+                <br>
                 <hr>
                     {% for user in user_followers %}
                         <div class="user-follower">
                             <a href="{% url 'profile' user.username %}">
                                 {% if user.profile_photo %}
-                                    <img class="profile-pic-small" src="{{ user.profile_photo.url }}">
+                                    <img class="profile-pic-small2" src="{{ user.profile_photo.url }}">
                                 {% else %}
-                                    <img class="profile-pic-small" src="{% static 'img/default_profile.png' %}">
+                                    <img class="profile-pic-small2" src="{% static 'img/default_profile.png' %}">
                                 {% endif %}
                             </a>
                             <p>
-                                <a href="{% url 'profile' user.username %}">
                                     <strong>{{user.username }}</strong>
-                                </a>
                             </p>
                         </div>
                     <hr>
@@ -117,12 +113,6 @@
             {% endif %}
 
         </div>
-
-
-    </div>
-
-
-    <div class="col-25">
 
     </div>
 

@@ -112,7 +112,7 @@ def logout_user(request):
 
 
 @login_required
-def followers_page(request, user):
+def subscriptions(request, user):
     search_form = forms.SearchUser()
     searched_user_resp = ""
     requested_user = User.objects.get(username=user)
@@ -135,8 +135,14 @@ def followers_page(request, user):
             search_form = forms.SearchUser(request.POST)
             if search_form.is_valid():
                 query = search_form.cleaned_data['search']
-                searched_user = User.objects.filter(username__icontains=query).first()
-                if searched_user:
+                searched_user = User.objects.filter(username__iexact=query).first()
+                if not searched_user:
+                    messages.error(request, "Aucun utilisateur ne correspond à cette recherche.")
+                elif searched_user == request.user:
+                    messages.error(request, "Vous ne pouvez pas vous abonner à vous-même !")
+                elif searched_user in user_follows:
+                    messages.error(request, f"Vous êtes déjà abonnée à {searched_user}.")
+                else:
                     searched_user_resp = searched_user
                     searched_user_resp_btn = forms.FollowUserButton(initial={'user_to_follow': searched_user.id})
 
@@ -148,21 +154,22 @@ def followers_page(request, user):
                 if request.user.follows.filter(id=user_to_follow.id).exists():
                     request.user.follows.remove(user_to_follow)
                     user_to_follow.followed_by.remove(request.user)
+                    messages.success(request, f"Vous êtes bien désabonné à {user_to_follow}.")
+                    return redirect(request.path)
+
                 else:
                     request.user.follows.add(user_to_follow)
                     user_to_follow.followed_by.add(request.user)
+                    messages.success(request, f"Vous êtes maintenant abonné à {user_to_follow}.")
+                    return redirect(request.path)
 
     context = {
-        'search_form': search_form,
-        'searched_user_resp': searched_user_resp,
-        'searched_user_btn': searched_user_resp_btn,
-        'requested_user': requested_user,
-        'user_follows': user_follows,
-        'group_user_follows': group_follows_users,
-        'user_followers': user_followers
-    }
-    return render(
-        request,
-        'authentication/followers.html',
-        context
-    )
+     'search_form': search_form,
+     'searched_user_resp': searched_user_resp,
+     'searched_user_btn': searched_user_resp_btn,
+     'requested_user': requested_user,
+     'user_follows': user_follows,
+     'group_follows_users': group_follows_users,
+     'user_followers': user_followers,
+     }
+    return render(request, 'authentication/subscriptions.html', context)

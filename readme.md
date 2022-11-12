@@ -16,9 +16,6 @@ Testé sous Windows 11 - Python version 3.10.5 - Django 4.1.2
   * [2.1 Fonctionnalités](#heading--2-1)
   * [2.2 Utilisation](#heading--2-2)
 
-**[3. Rapport flake8](#heading--3)**
-  * [3.1 Dernier rapport flake8 généré](#heading--3-1)
-  * [3.2 Générer un nouveau rapport](#heading--3-2)
        
 
 <div id="heading--1"/>
@@ -101,14 +98,14 @@ Testé sous Windows 11 - Python version 3.10.5 - Django 4.1.2
 
 #### 2.1 Fonctionnalités
 
-- Se connecter et s'inscrire
-- Consulter son profil et le modifier (nom d'utilisateur et photo de profil)
-- Consulter un fil classé par orde chronologique contenant tickets et critiques des utilisateurs auxquels on est abonné 
-- Créer des tickets (demande de critique sur un livre/article) 
-- Créer des critiques, en réponse ou non à des tickets 
-- Voir ses propres posts, les modifier ou les supprimer 
+- Se connecter et s'inscrire.
+- Consulter son profil et le modifier (nom d'utilisateur et photo de profil).
+- Consulter un fil classé par orde chronologique contenant tickets et critiques des utilisateurs auxquels on est abonné. 
+- Créer des tickets (demande de critique sur un livre/article).
+- Créer des critiques, en réponse ou non à des tickets. 
+- Filtre sur tickets ou critiques avec possibilité de les modifier ou les supprimer. 
 - Suivre d'autres utilisateurs, ou se désabonner.
-- Voir qui l'on suit et par qui l'on est suivi
+- Voir qui l'on suit et par qui l'on est suivi.
 
 
 <div id="heading--2-2"/>
@@ -132,24 +129,3 @@ Identifiant : **admin** | Mot de passe : **admpwd123**
 | Ulysse55      | password999    |
 
 
-----------
-<div id="heading--3"/>
-
-
-### 3. Rapport flake8
-
-<div id="heading--3-1"/>
-
-#### 3.1 Dernier rapport flake8 généré
-
-
-<div id="heading--2-2"/>
-
-#### 3.2 Générer un nouveau rapport
-   Supprimez le dossier "flake8_report" contenant le dernier rapport (fichier "index.html")
-
-   Depuis votre terminal tapez :
-
-       flake8 --format=html --htmldir=flake8_report
-
-Le dossier "flake8_report" est de nouveau généré avec le rapport  ("index.html") à l'intérieur.

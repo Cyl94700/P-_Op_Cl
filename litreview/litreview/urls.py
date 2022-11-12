@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from authentication.views import LoginPage, SignupPage, logout_user, profile, followers_page
+from authentication.views import LoginPage, SignupPage, logout_user, profile, subscriptions
 from review.views import feed, create_ticket, create_review, create_ticket_and_review, edit_ticket, edit_review, \
                          ticket_view, review_view
 
@@ -28,7 +28,7 @@ urlpatterns = [
     path('signup/', SignupPage.as_view(), name='signup'),
     path('logout/', logout_user, name='logout'),
     path('profile/<str:user>/', profile, name="profile"),
-    path('profile/<str:user>/followers/', followers_page, name="followers_page"),
+    path('profile/<str:user>/abonnements/', subscriptions, name="subscriptions"),
     # review App :
     path('feed/', feed, name='feed'),
     path('ticket_view/', ticket_view, name='ticket_view'),

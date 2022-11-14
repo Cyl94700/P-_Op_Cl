@@ -43,6 +43,7 @@ Testé sous Windows 11 - Python version 3.10.5 - Django 4.1.2
    Tapez :
 
        pip install -r requirements.txt
+       cd litreview 
 
 ###### Lancer le serveur Django
    Tapez :
@@ -78,6 +79,7 @@ Testé sous Windows 11 - Python version 3.10.5 - Django 4.1.2
    Tapez :
 
        pip install -r requirements.txt
+       cd litreview
 
 ###### Lancer le serveur Django
    Tapez :

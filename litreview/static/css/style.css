@@ -23,32 +23,30 @@ html {
   margin: auto;
   }
 .main__sub .profile-pic {
-  position: fixed;
+  position: relative;
+  z-index: -1;
   width: 100%;
-  top: 170px;
-  left: 45%;
+  top: 10px;
+  right: 3%;
   max-width: 100px;
-  /*clip-path: circle();*/
+  clip-path: circle();
   display: block;
   margin-top: 40px;
   }
 .main__sub .profile-pic-small2 {
   position: relative;
   z-index: -1;
-  left:10%;
+  left:0px;
   max-width: 60px;
   clip-path: circle();
   display: block;
-
   }
  .main__sub .followers {
-   top: 330px;
-   left: 41%;
+   margin-top: 20px;
+   margin-left: 41%;
    width: 100%;
-   position: fixed;
  }
  .container__sub .btn2 {
-  margin-left: 40%;
   display: block;
   font-family: "Montserrat, Sans-serif";
   width: 450px;
@@ -76,48 +74,46 @@ html {
   transition: all 0.3s;
 }
 .container__sub {
- padding-top: 380px;
- width: 90%;
-  }
+  padding-top: 80px;
+  padding-left: 600px;
+  width: 90%;
+}
 
 .container__sub .other{
-text-align: center;
-padding-right: 76%;
+ text-align: center;
+ padding-right: 73%;
 }
 .container__sub .ab{
-text-align: center;
-margin-top: 170px;
-padding-left: 6%;
+  text-align: center;
+  margin-top: 30px;
+  padding-right: 76%;
+}
+.form__search form >p{
+  margin-left:8%;
 }
 
-.container__sub .search-user{
-  position: fixed;
-  width: 100%;
-  left: 600px;
-  top: 350px;
-}
 .container__sub .user-follower{
-padding-left:41%;
-padding-top: 5px;
-width:100%;
+  padding-left:11%;
+  padding-top: 5px;
+  width:100%;
 }
-.container__sub >user-follower-search{
-padding-left:41%;
-padding-top: 10px;
-width:100%;
+.container__sub .user-follower-search{
+  padding-left:11%;
+  padding-top: 10px;
+  width:100%;
 }
 .user-follower-search >p{
-padding-left:10%;
-padding-top: 5px;
-width:100%;
+  padding-left:0%;
+  padding-top: 5px;
+  width:100%;
 }
 .user-follower >p{
-padding-left:10%;
-padding-top: 5px;
-width:100%;
+  padding-right:50%;
+  padding-top: 5px;
+  width:100%;
 }
 strong{
-color: blue;
+  color: blue;
 }
 .form {
   position: absolute;
@@ -199,6 +195,16 @@ input[type="checkbox"] {
   cursor: pointer;
   background: linear-gradient(#C0C0C0, #FFFFF0);
 }
+.btn2:hover {
+  cursor: pointer;
+  background: linear-gradient(#C0C0C0, #FFFFF0);
+  color: #2169ec
+}
+.btn2-search:hover {
+  cursor: pointer;
+  background: linear-gradient(#C0C0C0, #FFFFF0);
+  color: #2169ec
+}
 .butn a {
   display: block;
   color: #000;
@@ -213,7 +219,6 @@ input[type="checkbox"] {
   width: 150px;
   height: 150px;
 }
-
 header {
   position: fixed;
   width: 100%;
@@ -236,7 +241,6 @@ header button{
 }
 header .dropdown{
   position: relative;
-  /*padding-right:120px;*/
 }
 header .dropdown .content{
   display: none;
@@ -342,21 +346,24 @@ text-shadow:2px 3px 3px black;
   border-radius: 3px;
   border: 1px solid #000;
 }
-.main__sub >h2 {
-  top: 186px;
-  right: 35px;
+h2 {
+  padding-top: 10px;
+  margin-right: 60px;
   text-align: center;
-  position: fixed;
-  width: 100%;
+}
+.main__sub >h2 {
+  padding-top: 186px;
+  margin-right: 35px;
+  text-align: center;
 }
 .container__feed h3 {
   text-align: center;
 }
 .container__feed .photo {
-    height: 180px;
-    width: 140px;
-    margin-right: 16px;
-    border: solid 2px #c49b38;
+  height: 180px;
+  width: 140px;
+  margin-right: 16px;
+  border: solid 2px #c49b38;
 }
 .container__feed .description {
   width: 600px;
@@ -387,10 +394,10 @@ text-shadow:2px 3px 3px black;
   flex: 0 0 60%;
 }
 ul.messages {
-    position: fixed;
-    width:100%;
-    top: 150px;
-    list-style-type: none;
+  position: fixed;
+  width:100%;
+  top: 150px;
+  list-style-type: none;
 }
 
 ul.messages li.success,
